@@ -1,0 +1,104 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+
+# TODO: Write Dcocumentation e.g. Project Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+Documentation	Project Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+# TODO: Write Precondition, Postcondition, Tags
+
+Pre Condition	 Open Browser
+Post Condition	Closer Browser
+Tags	Project test, create project, read project, update project, delete project, CRUD
+
+#******************* Common Variables ********************
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+# TODO: Write Project creation field variables
+
+ NewProject = https://gitlab.com/projects/new
+ ProjectName = MyTestProject1
+ ProjectURL = group_name4535115
+ ProjectSlug = mytestproject1
+ VisibilityLevel = Private
+ ProjectConfi_README = true
+ ProjectName2 = MyTestProject2
+ ProjectSlug2 = mytestproject2
+ AllProjects = https://gitlab.com/dashboard/projects
+ ProjectName2_Update = MyTestProject2_Up
+ Delete_Verification = group_name4535115/mytestproject2
+
+
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# TODO: Write Positive and Negative Test Cases and Test Process steps
+
+# Positive Test examples are below write test process steps for each below test case
+
+	Create blank project
+		Navigate to Create new project page NewProject
+		Access Create Blank Project
+		Input Project Name	ProjectName
+		Input Project URL 	ProjectURL
+		Input Project Slug 	ProjectSlug
+		Choose Visibility Level  VisibilityLevel
+		Choose Project Configuration  ProjectConfi_README
+		Submit Create Project form
+		Verify page should say Project 'ProjectName' was successfully created.
+
+ 	Create template project 
+		Navigate to Create new project page NewProject
+		Access Create from template
+		Choose template from Use Template
+		Input Project Name	ProjectName2
+		Input Project URL 	ProjectURL
+		Input Project Slug 	ProjectSlug2
+		Choose Visibility Level  VisibilityLevel
+		Submit Create Project form
+		Verify page should say The project was successfully imported.
+
+
+	Update name of template project
+		Navigate to AllProjects
+		Access ProjectName2
+		Access Settings
+		Change Input Project Name to ProjectName2_Update
+		Submit Save changes form
+		Verify page should say Project 'ProjectName2_Update' was successfully updated.
+
+
+	Delete template project
+		Navigate to AllProjects
+		Access ProjectName2_Update
+		Access Settings
+		Expand Advanced
+		Submit Delete project
+		Input Delete_Verification
+		Submit Yes, delete project
+		Change Input Project Name to ProjectName2_Update
+		Verify Page should say Project 'group_name / MyTestProject2_Up-deleted-45130690' will be deleted on 2023-04-20
+
+
+# Negative Test examples are below write test process steps for each below test case
+
+	Create a blank project with the previous same name
+		Navigate to Create new project page NewProject
+		Access Create Blank Project
+		Input Project Name	ProjectName
+		Input Project URL 	ProjectURL
+		Input Project Slug 	ProjectSlug
+		Choose Visibility Level  VisibilityLevel
+		Choose Project Configuration  ProjectConfi_README
+		Submit Create Project form
+		Verify page should say The form contains the following errors: Project namespace name has already been taken. Name has already been taken. Path has already been taken.
+
+

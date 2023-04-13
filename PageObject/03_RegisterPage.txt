@@ -1,0 +1,89 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+
+# TODO: Write Documentation e.g. User Registration Test scenario with verification, valid and invalid credentials.
+
+Documentation	Testing user registration with verification, valid and invalid credentials.
+
+# TODO: Write Precondition, Postcondition, Tags
+
+Pre Condition	Open browser
+Post Condition	Registered account for this specific webpage
+Tags	Sign up, registering an account, registration
+
+#******************* Common Variables ********************
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+# TODO: Write Registration field variables
+
+SignupUrl = https://gitlab.com/users/sign_up
+FirstName = Jonna
+LastName = Jantunen
+UserName = jonnajan04
+UserEmail = joj00004@laurea.fi
+Password = ********
+Invalid_UserEmail = joj00004laurea.fi
+Empty = 
+
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# TODO: Write Positive and Negative Test Cases and Test Process steps
+
+# Positive Test examples are below write test process steps for each below test case
+
+	Register user with valid username and password 
+		Navigate to sign up page 	SignupUrl
+		Input First name 	FirstName
+		Input Last name 	LastName
+		Input Username 		UserName
+		Input Email 	UserEmail
+		Input Password 		Password
+		Submit Register Form
+		Verify Verification code sent to UserEmail
+		Submit Verify form with correct verify number
+		Verify Welcome to GitLab page
+
+
+# Negative Test examples are below write test process steps for each below test case
+
+	Register user with already existing username
+		Navigate to sign up page 	SignupUrl
+		Input First name 	FirstName
+		Input Last name 	LastName
+		Input Username 		UserName
+		Input Email 	UserEmail
+		Input Password 		Password
+		Submit Register Form
+		Verify Error message should say Username already taken.
+
+	Register user with empty password
+		Navigate to sign up page 	SignupUrl
+		Input First name 	FirstName
+		Input Last name 	LastName
+		Input Username 		UserName
+		Input Email 	UserEmail
+		Input Password 		Empty
+		Submit Register Form
+		Verify Error message should say Minimum length is 8 characters.
+
+	Register user with invalid email
+		Navigate to sign up page 	SignupUrl
+		Input First name 	FirstName
+		Input Last name 	LastName
+		Input Username 		UserName
+		Input Email 	Invalid_UserEmail
+		Input Password 		Password
+		Submit Register Form
+		Verify Error message should say Please provide a valid email address.
+
+	Register user without recaptcha
+		No recaptcha required for registering, can not continue test

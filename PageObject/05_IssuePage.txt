@@ -1,0 +1,92 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+Documentation	Issue Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+# TODO: Write Precondition and Postcondition, Tags 
+
+Pre Condition	Create a project
+Post Condition	Issue has been created
+Tags	issue test, crud
+
+#******************* Common Variables ********************
+
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+# TODO: Write Issue creation field variables, Updated name of the issue
+
+IssuesPage = https://gitlab.com/group_name4535115/mytestproject1/-/issues
+ProjectName = MyTestProject1
+TitleName = TestIssue1
+Description = Issue test one two three
+Confidential_False = false
+Assignee = Jonna Jantunen
+Milestone = No Milestone
+Labels = No label
+DueDate = 2023-04-20
+UpdateIssuePage = https://gitlab.com/group_name4535115/mytestproject1/-/issues/1
+TitleName2 = TestIssue1_2
+
+
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# TODO: Write Positive Test Cases and Test Process steps
+
+# Positive Test examples are below write test process steps for each below test case
+
+	Create issue
+	 Navigate to Issues Page IssuesPage
+	 Access Select Project to create Issue
+	 Select ProjectName
+	 Access New Issue in ProjectName
+	 Input Title TitleName
+	 Select Type Issue
+	 Input Description Description
+	 Select if issue is confidential Confidential_False
+	 Select Assignee Assignee
+	 Select Milestone Milestone
+	 Select Labels Labels
+	 Select Due Date DueDate
+	 Submit Create issue form
+	 Verify page should show TitleName, Description, Assignee, Milestone, Labels, DueDate
+
+ 	Update name of issue
+	 Navigate to UpdateIssuePage
+	 Access Edit
+	 Update TitleName to TitleName2
+	 Submit Save changes
+	 Verify page should show TitleName2, Description, Assignee, Milestone, Labels, DueDate
+	 
+
+	Create second issue with privious updated name
+	 Navigate to Issues Page IssuesPage
+	 Access Select Project to create Issue
+	 Select ProjectName
+	 Access New Issue in ProjectName
+	 Input Title TitleName2
+	 Select Type Issue
+	 Input Description Description
+	 Select if issue is confidential Confidential_False
+	 Select Assignee Assignee
+	 Select Milestone Milestone
+	 Select Labels Labels
+	 Select Due Date DueDate
+	 Submit Create issue form
+	 Verify page should show TitleName, Description, Assignee, Milestone, Labels, DueDate
+
+
+    Delete first issue
+	 Navigate to IssuesPage
+	 Select TitleName2 #1
+	 Select three dots
+	 Select delete issue
+	 Confirm Delete issue
+	 Verify page should say The issue was successfully deleted.
